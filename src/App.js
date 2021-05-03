@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Layout } from 'antd'
+import "antd/dist/antd.css"
+
+import MenuComponent from "./components/MenuComponent"
+import AirlinesDetails from "./components/AirlineDetails/AirlinesDetails"
+import FooterComponent from "./components/FooterComponent"
+
+const App = () => {
+    return (
+		<Layout style={{ minHeight: '100vh' }}>
+			<MenuComponent />
+			<Layout>
+				<Switch>
+					<Route exact path="/airlines" component={AirlinesDetails} />
+					<Route exact path="/passengers" component={AirlinesDetails} />
+					<Redirect from="*" to="/airlines" />
+				</Switch>
+				<FooterComponent />
+			</Layout>
+		</Layout>
+    )
 }
 
 export default App;
