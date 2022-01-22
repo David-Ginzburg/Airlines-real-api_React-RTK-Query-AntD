@@ -7,8 +7,8 @@ const columns = [
         title: "logo",
         dataIndex: "logo",
         key: "logo",
-        render: (text, record) => (
-            <Image width={200} src={text} alt={record.name} />
+        render: (logo, record) => (
+            <Image width={200} src={logo} alt={record.name} />
         ),
     },
     {
@@ -54,7 +54,7 @@ const columns = [
     {
         title: "Action",
         key: "action",
-        render: (text, record) => (
+        render: (_, record) => (
             <Space size="middle">
                 <Link to={`/airlines/${record.id}`}>View</Link>
             </Space>

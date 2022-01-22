@@ -1,11 +1,12 @@
 import React from "react"
 import { Switch, Route, Redirect } from 'react-router-dom'
-
+// Libraries
 import { Layout } from 'antd'
-import "antd/dist/antd.css"
-
+import './App.less'
+// Components
 import MenuComponent from "./components/MenuComponent"
-import AirlinesDetails from "./components/AirlineDetails/AirlinesDetails"
+import AirlinesTable from "./components/AirlinesTable/AirlinesTable"
+import PassengersTable from "./components/PassengersTable/PassengersTable"
 import FooterComponent from "./components/FooterComponent"
 
 const App = () => {
@@ -14,8 +15,8 @@ const App = () => {
 			<MenuComponent />
 			<Layout>
 				<Switch>
-					<Route exact path="/airlines" component={AirlinesDetails} />
-					<Route exact path="/passengers" component={AirlinesDetails} />
+					<Route exact path="/airlines" component={AirlinesTable} />
+					<Route exact path="/passengers" component={PassengersTable} />
 					<Redirect from="*" to="/airlines" />
 				</Switch>
 				<FooterComponent />
