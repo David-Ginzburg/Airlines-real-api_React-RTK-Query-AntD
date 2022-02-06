@@ -1,1 +1,1 @@
-Deployed project: https://airlines-passengers.netlify.app/airlines
+Deployed project: https://airlines-passengers.netlify.app/
