@@ -1,35 +1,49 @@
-import React from 'react'
-import { useGetAllPassengersQuery } from '../../API'
-// Libraries
-import columns from './columns'
-// Components
-import { Layout, Table } from 'antd'
+import { useState, useMemo } from 'react'
+import { useGetAllAirlinesQuery, useGetAllPassengersQuery } from '../../API'
 import usePagination, { paginationConfig } from '../../hooks/usePagination';
+// Libraries
+import { Layout, PageHeader, Table, Button } from 'antd'
+// Components
+import columns from './columns'
+import PassengerModal from './PassengerModal'
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 const PassengersTable = () => {
-    const [filters, setFilters] = usePagination()
+    const [pagination, setPagination] = usePagination()
+    const [selectedPassenger, setSelectedPassenger] = useState({})
 
-    const { data: { data = [], totalPassengers = '' } = {}, isLoading } = useGetAllPassengersQuery(filters)
+    const { data: { data: allPassengers = [], totalPassengers = '' } = {}, isLoading: allPassengersLoading } = useGetAllPassengersQuery(pagination)
+    const { data: allAirlines = [], isLoading: allAirlinesLoading } = useGetAllAirlinesQuery()
+
+    const allAirlinesOptions = useMemo(() => allAirlines.map(item => ({value: item.id, label: item.name})), [allAirlines])
 
     const handlePaginationChange = (current, pageSize) => {
-        setFilters((prev) => ({ ...prev, current, pageSize }))
+        setPagination((prev) => ({ ...prev, current, pageSize }))
+    }
+
+    const handleOpenModal = (record = {new: true}) => {
+        setSelectedPassenger(record)
     }
 
     return (
         <Layout className="site-layout">
-            <Header className="site-layout-background">All Passengers Table</Header>
+            <PassengerModal setSelectedPassenger={setSelectedPassenger} selectedPassenger={selectedPassenger} allAirlinesOptions={allAirlinesOptions} allAirlinesLoading={allAirlinesLoading} />
+            <PageHeader 
+                className="site-layout-background" 
+                title='All Passengers Table' 
+                extra={[<Button key='1' onClick={() => handleOpenModal()} type='primary'>Create passenger</Button>]}
+            />
             <Content style={{ margin: '16px' }}>
                 <Table 
-                    columns={columns} 
-                    dataSource={data} 
-                    rowKey="_id" 
-                    loading={isLoading} 
+                    columns={columns(handleOpenModal)}
+                    dataSource={allPassengers} 
+                    rowKey="_id"
+                    loading={allPassengersLoading} 
                     pagination={{
                         ...paginationConfig,
-                        pageSize: filters.pageSize,
-                        current: filters.current,
+                        pageSize: pagination.pageSize,
+                        current: pagination.current,
                         total: totalPassengers || 0,
                         onChange: handlePaginationChange,
                     }}

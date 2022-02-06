@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Space, Button } from "antd";
 import { useDeletePassengerMutation } from '../../API'
+// Libraries
+import { Space, Button, Popconfirm } from "antd";
 import {
 	DeleteOutlined,
+    EditOutlined
 } from '@ant-design/icons'
 
 const DeletePassenger = ({id}) => {
@@ -12,39 +12,48 @@ const DeletePassenger = ({id}) => {
         deletePassenger(id)
     }
 
-    return <Button type="danger" icon={<DeleteOutlined />} onClick={handleDeletePassenger} />
+    return (
+        <Popconfirm
+            onConfirm={handleDeletePassenger}
+            title="Are you sure?" 
+            okText="Yes"
+            cancelText="No"
+        >
+            <Button type="danger" icon={<DeleteOutlined />} />
+        </Popconfirm>
+    )
 }
 
-
-const columns = [
+const columns = (handleOpenModal) => [
     {
         title: "Name",
         dataIndex: "name",
         key: "name",
-        width: 300,
+        width: 200,
         render: (rec) => rec ? rec : '-',
     },
     {
         title: "Trips",
         dataIndex: "trips",
         key: "trips",
-        width: 20,
+        width: 100,
         render: (rec) => rec ? rec : 0,
     },
     {
         title: "Airline",
         dataIndex: "airline",
         key: "airline",
-        width: '80%',
+        width: '60%',
         render: (rec) => rec[0].name,
     },
     {
         title: "Action",
         key: "action",
         align: 'center',
+        width: 100,
         render: (_, record) => (
             <Space size="middle">
-                <Link to={`/passengers/${record._id}`}>View</Link>
+                <Button onClick={() => handleOpenModal(record)} icon={<EditOutlined />} type='primary' />
                 <DeletePassenger id={record._id} />
             </Space>
         ),
