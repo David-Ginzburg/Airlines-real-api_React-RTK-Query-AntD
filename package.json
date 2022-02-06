@@ -2,6 +2,7 @@
   "name": "my_project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vadim-mostovenko.github.io",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@ant-design/plots": "^1.0.8",
@@ -19,7 +20,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build"
+    "build": "craco build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
