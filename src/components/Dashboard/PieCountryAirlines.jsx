@@ -1,4 +1,5 @@
 import { Pie } from '@ant-design/plots';
+import { Result } from 'antd';
 
 const PieCountryAirlines = ({pieCountryData}) => {
   const config = {
@@ -21,6 +22,14 @@ const PieCountryAirlines = ({pieCountryData}) => {
         type: 'element-active',
       },
     ],
+  }
+
+  if (!pieCountryData.length) {
+    return <Result
+      status="500"
+      title="500"
+      subTitle="No data"
+    />
   }
 
   return <Pie {...config} />;

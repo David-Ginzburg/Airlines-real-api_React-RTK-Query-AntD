@@ -1,4 +1,5 @@
 import { Line } from '@ant-design/plots';
+import { Result } from 'antd';
 
 const LineYearAirlines = ({lineYearData}) => {
     const config = {
@@ -33,6 +34,14 @@ const LineYearAirlines = ({lineYearData}) => {
         },
         ],
     }
+
+    if (!lineYearData.length) {
+        return <Result
+          status="500"
+          title="500"
+          subTitle="No data"
+        />
+      }
     
     return <Line {...config} />;
 };
