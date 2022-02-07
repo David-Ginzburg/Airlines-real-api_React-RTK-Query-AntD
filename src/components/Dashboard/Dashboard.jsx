@@ -31,7 +31,7 @@ const Dashboard = () => {
                 return finalData
             }
         }, {})
-    ).map(item => ({type: item[0], value: item[1]}))
+    ).filter(item => item[1] > 30).map(item => ({type: item[0], value: item[1]}))
    
     return (
         <Layout className="site-layout">
@@ -43,14 +43,14 @@ const Dashboard = () => {
                 <Row gutter={[16, 16]}>
                     <Col span={24}>
                         <Card
-                            title="Airline registrations per year"
+                            title="Airline registrations per year (between year 1900 and 2100)"
                         >
                             <LineYearAirlines lineYearData={lineYearData} />
                         </Card>
                     </Col>
                     <Col span={24}>
                         <Card
-                            title="Airlines per countries"
+                            title="Airlines per countries (over 30 names)"
                         >
                             <PieCountryAirlines pieCountryData={pieCountryData} />
                         </Card>
