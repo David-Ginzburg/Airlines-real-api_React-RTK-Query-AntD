@@ -1,42 +1,29 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useGetAllPassengersQuery } from '../../API'
 import usePagination from '../../hooks/usePagination';
 // Libraries
-import { Layout, List, Card, PageHeader } from 'antd';
+import { Layout, List, Card, PageHeader, Spin } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
+import { useObserver } from '../../hooks/useObserver';
 
 const { Content } = Layout;
 
 const PassengersInfinityScroll = () => {
     const [pagination, setPagination] = usePagination()
     const [passengers, setPassengers] = useState([])
-    const [fetching, setFetching] = useState(false)
+    const lastElement = useRef()
 
-    const { data: { data = [], totalPassengers = '' } = {}, isLoading } = useGetAllPassengersQuery(pagination)
+    const { data: { data = [], totalPassengers = '' } = {}, isFetching } = useGetAllPassengersQuery(pagination)
 
-    useEffect(() => {
-        if (fetching) {
-            setPagination(prev => ({current: prev.current + 1, pageSize: prev.pageSize}))
-            setFetching(prev => !prev)
-        }
-    }, [fetching, setPagination])
+    const cb = () => {
+        setPagination(prev => ({current: prev.current + 1, pageSize: prev.pageSize}))
+    }
+
+    useObserver(lastElement, data.length < totalPassengers, isFetching, cb)
 
     useEffect(() => {
         data.length && setPassengers(prev => [...prev, ...data])
     }, [data])
-
-    const scrollHandler = useCallback((e) => {
-        if ((e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) && (passengers.length < totalPassengers)) {
-            setFetching(prev => !prev)
-        }
-    }, [passengers.length, totalPassengers])
-
-    useEffect(() => {
-        document.addEventListener('scroll', scrollHandler)
-        return function() {
-            document.removeEventListener('scroll', scrollHandler)
-        }
-    }, [scrollHandler])
 
     return (
         <Layout className="site-layout">
@@ -44,7 +31,7 @@ const PassengersInfinityScroll = () => {
             <Content style={{ margin: '10px' }}>
                 <List
                     dataSource={passengers}
-                    loading={isLoading}
+                    loading={isFetching}
                     style={{padding: '5px'}}
                     renderItem={item => (
                         <List.Item
@@ -60,6 +47,8 @@ const PassengersInfinityScroll = () => {
                         </List.Item>
                     )}
                 />
+                <div ref={lastElement}></div>
+                <Spin spinning={isFetching} size='large' style={{width: '100%'}} />
             </Content>
         </Layout>
         
