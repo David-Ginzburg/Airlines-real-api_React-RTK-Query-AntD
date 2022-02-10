@@ -27,7 +27,7 @@ const PassengersInfinityScroll = () => {
 
     return (
         <Layout className="site-layout">
-            <PageHeader className="site-layout-background" title='All Passengers Infinity Scroll' />
+            <PageHeader className="site-layout-background" title='All Passengers infinity scroll' />
             <Content style={{ margin: '10px' }}>
                 <List
                     dataSource={passengers}
