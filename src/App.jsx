@@ -12,9 +12,9 @@ import Dashboard from "./components/Dashboard/Dashboard"
 
 const App = () => {
     return (
-		<Layout style={{ minHeight: '100vh' }}>
+		<Layout style={{ minHeight: '100vh', width: 'auto' }}>
 			<MenuComponent />
-			<Layout>
+			<Layout style={{ width: 'auto' }}>
 				<Switch>
 					<Route exact path="/airlines" component={AirlinesTable} />
 					<Route exact path="/passengers" component={PassengersTable} />

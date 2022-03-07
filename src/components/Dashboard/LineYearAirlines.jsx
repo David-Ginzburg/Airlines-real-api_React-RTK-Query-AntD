@@ -22,9 +22,9 @@ const LineYearAirlines = ({lineYearData}) => {
         state: {
             active: {
                 style: {
-                shadowBlur: 4,
-                stroke: '#000',
-                fill: 'red',
+                    shadowBlur: 4,
+                    stroke: '#000',
+                    fill: 'red',
                 },
             },
         },
