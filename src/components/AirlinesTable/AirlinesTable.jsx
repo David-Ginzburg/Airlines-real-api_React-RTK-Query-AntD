@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { useGetAllAirlinesQuery } from '../../API'
+import { useGetAllAirlinesQuery } from '../../entities/airline/api';
 // Libraries
 import { Layout, PageHeader, Table } from 'antd'
 // Components
-import AirlineViewModal from './AirlineViewModal';
-import AirlineCreateModal from './AirlineCreateModal';
+import { AirlineViewModal } from '../../features/airline-view';
+import { AirlineCreateModal } from '../../features/airline-create';
 import columns from './Columns';
 
 const { Content } = Layout;

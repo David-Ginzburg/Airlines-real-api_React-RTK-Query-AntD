@@ -1,4 +1,4 @@
-import { useGetAllAirlinesQuery } from '../../API';
+import { useGetAllAirlinesQuery } from '../../entities/airline/api';
 import { Card, Col, Layout, PageHeader, Row } from 'antd'
 // Components
 import LineYearAirlines from './LineYearAirlines'

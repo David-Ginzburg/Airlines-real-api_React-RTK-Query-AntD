@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { useGetAllPassengersQuery } from '../../API'
+import { useGetAllPassengersQuery } from '../../entities/passenger/api';
 import usePagination from '../../hooks/usePagination';
 // Libraries
 import { Layout, List, Card, PageHeader, Spin } from 'antd';

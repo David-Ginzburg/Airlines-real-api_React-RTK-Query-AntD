@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Modal, Form, Input, Select, InputNumber } from 'antd'
-import { isVoidObject } from '../../helpers/index'
-import { useCreatePassengerMutation, useEditPassengerMutation } from '../../API'
+import { isVoidObject } from '../../../shared/lib/helpers/index';
+import { useCreatePassengerMutation, useEditPassengerMutation } from '../../../entities/passenger/api';
 
 const layoutFields = {
     labelCol: { span: 6 },

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Modal, Form, Input, InputNumber, Button } from 'antd'
-import { useCreateAirlineMutation } from '../../API'
+import { useCreateAirlineMutation } from '../../../entities/airline/api';
 
 const layoutFields = {
     labelCol: { span: 6 },

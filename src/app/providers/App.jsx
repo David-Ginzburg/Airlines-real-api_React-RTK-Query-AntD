@@ -1,14 +1,14 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
 // Libraries
 import { Layout } from 'antd'
-import './App.less'
+import '../styles/App.less'
 // Components
-import MenuComponent from "./components/MenuComponent"
-import AirlinesTable from "./components/AirlinesTable/AirlinesTable"
-import PassengersTable from "./components/PassengersTable/PassengersTable"
-import FooterComponent from "./components/FooterComponent"
-import PassengersInfinityScroll from "./components/PassengersInfinityScroll/PassengersInfinityScroll"
-import Dashboard from "./components/Dashboard/Dashboard"
+import MenuComponent from "../../components/MenuComponent"
+import AirlinesTable from "../../components/AirlinesTable/AirlinesTable"
+import PassengersTable from "../../components/PassengersTable/PassengersTable"
+import FooterComponent from "../../components/FooterComponent"
+import PassengersInfinityScroll from "../../components/PassengersInfinityScroll/PassengersInfinityScroll"
+import Dashboard from "../../components/Dashboard/Dashboard"
 
 const App = () => {
     return (
