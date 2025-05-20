@@ -2,7 +2,7 @@ import { Layout } from 'antd'
 
 const { Footer } = Layout;
 
-const FooterComponent = () => {
+const AppFooter = () => {
     return (
         <Footer style={{ textAlign: 'center' }}>
             This was made for educational purposes. Api provided by <a href='https://www.instantwebtools.net/fake-rest-api' target='_blank' rel="noreferrer">https://www.instantwebtools.net/fake-rest-api</a>
@@ -10,4 +10,4 @@ const FooterComponent = () => {
     )
 }
 
-export default FooterComponent
+export default AppFooter;

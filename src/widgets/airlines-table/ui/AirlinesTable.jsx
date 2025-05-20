@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import { useGetAllAirlinesQuery } from '../../entities/airline/api';
+import { useGetAllAirlinesQuery } from '../../../entities/airline/api';
 // Libraries
 import { Layout, PageHeader, Table } from 'antd'
 // Components
-import { AirlineViewModal } from '../../features/airline-view';
-import { AirlineCreateModal } from '../../features/airline-create';
-import columns from './Columns';
+import { AirlineViewModal } from '../../../features/airline-view';
+import { AirlineCreateModal } from '../../../features/airline-create';
+import columns from '../lib/Columns';
 
 const { Content } = Layout;
 
-const AirlinesTable = () => {
+const AirlinesTableWidget = () => {
     const { data = [], isLoading } = useGetAllAirlinesQuery()
     const [selectedAirline, setSelectedAirline] = useState({})
 
@@ -38,4 +38,4 @@ const AirlinesTable = () => {
     )
 }
 
-export default AirlinesTable
+export default AirlinesTableWidget

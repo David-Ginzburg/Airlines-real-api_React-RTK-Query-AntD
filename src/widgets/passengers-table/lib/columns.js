@@ -1,4 +1,4 @@
-import { useDeletePassengerMutation } from '../../API'
+import { useDeletePassengerMutation } from '../../../entities/passenger/api';
 // Libraries
 import { Space, Button, Popconfirm } from "antd";
 import {

@@ -8,12 +8,14 @@ import {
 	LoadingOutlined,
 	DashboardOutlined
 } from '@ant-design/icons'
-import { useGetAllAirlinesQuery, useGetAllPassengersQuery } from '../API';
-import usePagination from '../hooks/usePagination';
+// TODO: Update these import paths in a later step
+import { useGetAllAirlinesQuery } from '../../../entities/airline/api';
+import { useGetAllPassengersQuery } from '../../../entities/passenger/api';
+import usePagination from '../../../shared/lib/hooks/usePagination';
 
 const { Sider } = Layout;
 
-const MenuComponent = withRouter(props => {
+const AppMenu = withRouter(props => {
 	const [collapsed, setCollapsed] = useState(false)
 	const { location } = props
 	const [filters] = usePagination()
@@ -41,4 +43,4 @@ const MenuComponent = withRouter(props => {
 	)
 })
 
-export default MenuComponent
+export default AppMenu;

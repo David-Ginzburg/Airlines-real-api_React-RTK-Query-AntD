@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import { useGetAllPassengersQuery } from '../../entities/passenger/api';
-import usePagination from '../../hooks/usePagination';
+import { useGetAllPassengersQuery } from '../../../entities/passenger/api';
+import usePagination from '../../../shared/lib/hooks/usePagination';
 // Libraries
 import { Layout, List, Card, PageHeader, Spin } from 'antd';
 import Avatar from 'antd/lib/avatar/avatar';
-import { useObserver } from '../../hooks/useObserver';
+import { useObserver } from '../../../shared/lib/hooks/useObserver';
 
 const { Content } = Layout;
 

@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react'
-import { useGetAllAirlinesQuery } from '../../entities/airline/api';
-import { useGetAllPassengersQuery } from '../../entities/passenger/api';
-import usePagination, { paginationConfig } from '../../hooks/usePagination';
+import { useGetAllAirlinesQuery } from '../../../entities/airline/api';
+import { useGetAllPassengersQuery } from '../../../entities/passenger/api';
+import usePagination, { paginationConfig } from '../../../shared/lib/hooks/usePagination';
 // Libraries
 import { Layout, PageHeader, Table, Button } from 'antd'
 // Components
-import columns from './columns'
-import { PassengerModal } from '../../features/passenger-manage';
+import columns from '../lib/columns';
+import { PassengerModal } from '../../../features/passenger-manage';
 
 const { Content } = Layout;
 

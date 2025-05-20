@@ -1,12 +1,12 @@
-import { useGetAllAirlinesQuery } from '../../entities/airline/api';
+import { useGetAllAirlinesQuery } from '../../../entities/airline/api';
 import { Card, Col, Layout, PageHeader, Row } from 'antd'
 // Components
-import LineYearAirlines from './LineYearAirlines'
-import PieCountryAirlines from './PieCountryAirlines';
+import { LineYearAirlines } from '../../../widgets/dashboard-line-chart';
+import { PieCountryAirlines } from '../../../widgets/dashboard-pie-chart';
 
 const { Content } = Layout;
 
-const Dashboard = () => {
+const DashboardView = () => {
     const { data = [] } = useGetAllAirlinesQuery()
 
     const lineYearData = Object.entries(data.reduce(
@@ -61,4 +61,4 @@ const Dashboard = () => {
     )
 };
 
-export default Dashboard
+export default DashboardView;
